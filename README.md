@@ -1,8 +1,9 @@
 # SQLStudy
-SQL and Linux study environment using SQLite
+
+SQL / Linux / SQLite 学習環境
 
 ## Purpose
-Build a practical SQL learning and verification environment.
+SQLの学習・検証を効率化するための環境構築。
 
 ## Environment
 - Ubuntu
@@ -11,7 +12,7 @@ Build a practical SQL learning and verification environment.
 - DBeaver
 
 ## Features
-- SQL execution functions
-- Table management
-- CREATE / INSERT automation
-- SQL practice environment
+- SQL実行関数
+- テーブル一覧表示
+- CREATE / INSERT 自動化
+- SQL検証環境
