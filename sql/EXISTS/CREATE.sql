@@ -8,3 +8,17 @@ CREATE TABLE Meetings (
 
     person TEXT
 );
+
+-- ======================================================
+-- 二重否定への変換に慣れよう
+-- ======================================================
+
+CREATE TABLE TestScore (
+
+
+    studnt_id TEXT,
+
+    subject TEXT,
+
+    score INTEGER
+);
