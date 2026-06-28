@@ -1,6 +1,8 @@
 
 #テーブル作成関数の中身
 
+#!/bin/bash
+
     if [ -z "$1" ] || [ -z "$2" ]; then
         echo "使い方：init_sql フォルダ名 テーブル名"
         return 1
