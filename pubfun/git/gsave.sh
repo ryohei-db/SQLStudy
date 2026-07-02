@@ -32,25 +32,38 @@ git_title="${n_changed_dirs}_${today}_${now_time}"
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
-# 1 : ルートディレクトリである　SQL_Study　へ移動する
+# 1 : SQL_Study　へ移動する
 
 cd "${BASE_DIR}"
 
-# 2 : 新規・変更があるかを確認
+# 2 : 新規・変更があるかを確認、なければ終了
 
-git status
+if git status --short | grep -q .; then
+    echo "変更・新規作成あり"
+else
+    echo "変更なし"
+    exit 0
+fi
 
-# 3 : SQLStudy(ルートディレクトリ)直下のファイルを含める
+# 3 : SQLStudy直下のファイルを含め、git add.後の状態を表示
 
 git add .
+echo "===========git add .後の状態==========="
+git status --short
 
-# 4 : 保存時のタイトルを自動生成する
 
+# 4 : 保存時のタイトルを自動生成し、生成されたタイトルを表示する
+
+echo "コミットタイトル：${git_title}"
 git commit -m "${git_title}"
 
-# 5 GitHubへアップロード
+# 5 GitHubへアップロード、生成されたタイトルを表示、アップロード後の状態を表示
 
 git push
+echo "アップロード完了 : ${git_title}"
+echo "=============アップロード後の状態=================="
+git status
+
 
 
 
