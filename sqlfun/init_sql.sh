@@ -7,6 +7,7 @@
     echo "使い方：init_sql フォルダ名 テーブル名"
     exit 1
 fi
+#テーブルと格納されているディレクトリ
 
 folder="${1}"
 table_name="${2}"
