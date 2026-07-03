@@ -21,7 +21,8 @@ no_git_title="${changed_dirs}_${today}_${now_time}"
 
 #変更・新規作成されたファイルのディレクトリ
 
-n_changed_dirs="$(git status --short | awk '{print $2}' | cut -d / -f 1 | sort -u)"
+n_changed_dirs="$(git status --short | awk '{print $2}' | cut -d / -f 1 | sort -u | tr 'n\' '_')"
+
 
 #変更・新規作成時のタイトル　＊変更・新規作成ファイルにも対応した改善版
 
