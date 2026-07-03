@@ -9,7 +9,7 @@ SQL / Linux / SQLite 学習環境
 - 最終目標は、Pythonで作成したGUIツールと連携し、SQL実行や環境構築を効率化することです。
 - 将来的にはDocker上のMySQL環境にも対応し、複数のデータベースで検証できる環境を構築する予定です。
 
-## Environment
+## Environment ：使用ツール
 - Ubuntu
 - SQLite
 - VSCode
