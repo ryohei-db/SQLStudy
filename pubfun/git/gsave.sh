@@ -2,9 +2,6 @@
 
 #!/bin/bash
 
-#変更されたフォルダ名を取得
-
-changed_dirs="$(git diff --name-only | cut -d / -f 1 | sort -u )"
 
 #変更日を取得
 
@@ -13,10 +10,6 @@ today="$(date +%F)"
 #変更時間を取得
 
 now_time="$(date +%H%M)"
-
-#既存のファイル変更時のタイトル　＊変更には対応できるが、新規作成ファイルには対応不可のため改善版を用意する必要あり
-
-no_git_title="${changed_dirs}_${today}_${now_time}"
 
 
 #変更・新規作成されたファイルのディレクトリ
