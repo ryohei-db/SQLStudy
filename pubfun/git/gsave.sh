@@ -10,9 +10,7 @@ BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
 cd "${BASE_DIR}"
 
-echo "$BASE_DIR"
 pwd
-git rev-parse --show-toplevel
 
 #変更日を取得
 
