@@ -1,7 +1,18 @@
 #gsave関数の中身　GitHubのタイトルを生成　～　GitHubへアップロード自動化
 
 #!/bin/bash
+# .bashrc の BASE_DIR は .bashrc の位置を基準としているため、このスクリプトでは使用できない
+# このスクリプトを基準とした BASE_DIR を作成する
 
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+
+# 1 : SQL_Study　へ移動する
+
+cd "${BASE_DIR}"
+
+echo "$BASE_DIR"
+pwd
+git rev-parse --show-toplevel
 
 #変更日を取得
 
@@ -21,14 +32,7 @@ n_changed_dirs="$(git status --short | awk '{print $2}' | cut -d / -f 1 | sort -
 
 git_title="${n_changed_dirs}_${today}_${now_time}"
 
-# .bashrc の BASE_DIR は .bashrc の位置を基準としているため、このスクリプトでは使用できない
-# このスクリプトを基準とした BASE_DIR を作成する
 
-BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-
-# 1 : SQL_Study　へ移動する
-
-cd "${BASE_DIR}"
 
 # 2 : 新規・変更があるかを確認、なければ終了
 
