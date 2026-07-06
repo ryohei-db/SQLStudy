@@ -14,7 +14,7 @@ now_time="$(date +%H%M)"
 
 #変更・新規作成されたファイルのディレクトリ
 
-n_changed_dirs="$(git status --short | awk '{print $2}' | cut -d / -f 1 | sort -u | tr 'n\' '_')"
+n_changed_dirs="$(git status --short | awk '{print $2}' | cut -d / -f 1 | sort -u | tr '\n' '_')"
 
 
 #変更・新規作成時のタイトル　＊変更・新規作成ファイルにも対応した改善版
