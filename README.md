@@ -27,5 +27,6 @@ SQL / Linux / SQLite 学習環境
 - DBeaver
 
 ## Features : 主な機能
-- init_sql()：CREATE / INSERT を自動で実行し　データを自動で生成・格納
-- gsave() :タイトルの生成と命名　GitHubへのアップロードを自動化
+- init_sql() : CREATE・INSERTを自動実行し、初回のテーブル作成とデータ登録を自動化
+- gsave() : タイトルの生成と命名、GitHubへのアップロードを自動化
+- reset_table() : テーブルの存在確認・実行確認を行い、安全にDROP TABLEを実行
