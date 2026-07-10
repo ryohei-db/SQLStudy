@@ -44,23 +44,50 @@ if [ ! -f "${insert_file}" ]; then
     exit 1
 fi
 
-#DBにsqlite3を下記のSQLを実行してデータがあれば、"テーブル [${table_name}] は存在するので → 何もしない"と表示
-#データがなければ、"初回 → CREATE & INSERT"　と表示して　"${create_file}"　"${insert_file}"　を実行
+# テーブルが存在するなら　そのまま処理を終了する
+# テーブルが存在しないのであれば、テーブル作成処理を実行する
+# CREATE.sql/INSERT.sql がそれぞれの実行が失敗するとメッセージを表示してエラー終了
+# CREATE.sqlの実行が成功するとINSERT.sqlを実行それぞれ成功するとメッセージを表示
+# INSERT.sqlの実行も成功するとテーブル作成処理が完了したというメッセージを表示して正常終了
 
 if sqlite3 "${DB}" "SELECT name FROM sqlite_master WHERE type = 'table' AND name = '${table_name}';" | grep -q .; then
     
-    echo "テーブル ["${table_name}"] は存在するので → 何もしない"
+    echo ""${table_name}"テーブル は存在するのでそのまま終了します"
+
+    exit 0
 
 else
     
-    echo "初回 → CREATE & INSERT"
+    echo ""${table_name}"テーブル は存在しないのでテーブル作成処理を実行します"
+
+    echo "これから"${create_file}":CREATE.sql の実行します"
     
     sqlite3 "${DB}" < "${create_file}"
-    
+        
     if [ $? = 0 ]; then 
 
         echo ""${create_file}":CREATE.sql の実行に成功しました"
-    
+
+        echo "これから"${insert_file}":INSERT.sql の実行します"
+
+        sqlite3 "${DB}" < "${insert_file}"
+
+        if [ $? = 0 ]; then
+
+         echo ""${insert_file}":INSERT.sql の実行に成功しました"
+
+         echo ""${table_name}"の作成が完了しました"
+
+         exit 0
+        
+        else
+
+            echo ""${insert_file}":INSERT.sql の実行に失敗しました"
+
+            exit 1
+
+        fi
+
     else
 
         echo ""${create_file}":CREATE.sql の実行に失敗しました"
@@ -68,11 +95,5 @@ else
         exit 1
     
     fi
-
-    sqlite3 "${DB}" < "${insert_file}"
-
-
-    #　7/10ここから終了ステータスの処理の続き書く
-
-
+   
 fi
