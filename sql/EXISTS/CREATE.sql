@@ -22,3 +22,19 @@ CREATE TABLE TestScore (
 
     score INTEGER
 );
+
+CREATE TABLE init_reset_test (
+
+    id TEXT
+);
+
+
+CREATE TABLE init_reset_test2 (
+
+    id2 TEXT
+);
+
+CREATE TABLE init_reset_test3 (
+
+    id3 TEXT
+);
