@@ -62,7 +62,29 @@ else
 
     echo "これから"${create_file}":CREATE.sql の実行します"
     
-    sqlite3 "${DB}" < "${create_file}"
+    # ここからテーブル単位でSQLを実行できるように修正する　↓↓
+
+    awk -v table="${table_name}" '
+
+    $1 == "CREATE" && $2 == "TABLE" && $3 == table {
+
+        flag = 1
+
+    }
+    
+    flag {
+
+    print
+    
+    
+    }
+
+    # ここから続き 7/13
+
+    '
+
+
+
         
     if [ $? = 0 ]; then 
 
