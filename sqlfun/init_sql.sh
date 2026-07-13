@@ -60,43 +60,123 @@ else
     
     echo ""${table_name}"テーブル は存在しないのでテーブル作成処理を実行します"
 
-    echo "これから"${create_file}":CREATE.sql の実行します"
+    echo "これから"${create_file}"内の"${table_name}": "${table_name}" のCREATE文を実行します"
     
-    # ここからテーブル単位でSQLを実行できるように修正する　↓↓
 
+    cr_tab_sql="$(
     awk -v table="${table_name}" '
 
     $1 == "CREATE" && $2 == "TABLE" && $3 == table {
 
         flag = 1
+        found = 1
 
     }
-    
+
     flag {
 
-    print
-    
-    
+        print
+
     }
 
-    # ここから続き 7/13
+    flag && /;/ {
 
-    '
+        flag = 0
 
+    }
 
+    END {
+
+        if (!found) {
+
+            print "対象のテーブル:" table "のCREATE文が見つかりません" > "/dev/stderr"
+            exit 1
+
+        }
+
+    }' "${create_file}" 
+     )"
+
+    if [ $? -eq 0 ]; then
+
+         echo ""${table_name}" のCREATE文を抽出できました"
+    
+    else
+
+        echo ""${table_name}" のCREATE文の抽出に失敗しました"
+        exit 1
+    
+    fi
+
+    echo "${cr_tab_sql}" | sqlite3 "${DB}"
+        
+    if [ $? -eq 0 ]; then 
+
+        echo ""${table_name}" のCREATE文の実行に成功しました"
+
+        echo "これから"${insert_file}"内の"${table_name}":"${table_name}" のINSERT文を実行します"
 
         
-    if [ $? = 0 ]; then 
+        # CREATE と同じ形式だと行ごとに ; があるから対応できないから 7/14 修正
 
-        echo ""${create_file}":CREATE.sql の実行に成功しました"
 
-        echo "これから"${insert_file}":INSERT.sql の実行します"
+        in_tab_sql="$(awk -v table="${table_name}" '
+       
+        
 
-        sqlite3 "${DB}" < "${insert_file}"
 
-        if [ $? = 0 ]; then
+        $1 == "INSERT" && $2 == "INTO" && $3 == table {
 
-         echo ""${insert_file}":INSERT.sql の実行に成功しました"
+            flag=1
+            found=1
+
+        }
+
+        flag {
+        
+            print 
+        
+        }
+
+        flag && /;/ {
+        
+            flag=0
+
+        }
+
+        END {
+
+            if (! found) {
+            
+
+                print "対象のテーブル:" table "のINSERT文が見つかりません" > "/dev/stderr"
+                exit 1
+            
+            }
+        
+        
+        
+        }' "${insert_file}" )"
+
+
+        if [ $? -eq 0 ]; then
+
+         echo ""${table_name}" のINSERT文を抽出できました"
+    
+        else
+
+            echo ""${table_name}" のINSERT文の抽出に失敗しました"
+            exit 1
+    
+        fi
+
+
+        echo "${in_tab_sql}" | sqlite3 "${DB}"
+
+    
+        if [ $? -eq 0 ]; then
+
+         echo ""${table_name}" のINSERT文の実行に成功しました"
 
          echo ""${table_name}"の作成が完了しました"
 
@@ -104,7 +184,7 @@ else
         
         else
 
-            echo ""${insert_file}":INSERT.sql の実行に失敗しました"
+            echo ""${table_name}":INSERT文の実行に失敗しました"
 
             exit 1
 
@@ -112,7 +192,7 @@ else
 
     else
 
-        echo ""${create_file}":CREATE.sql の実行に失敗しました"
+        echo ""${table_name}":CREATE文の実行に失敗しました"
 
         exit 1
     
