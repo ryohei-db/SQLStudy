@@ -5,53 +5,40 @@
 #　reset_table() : テーブル削除関数の中身
 
 
-# テーブル名を指定しなければ、使い方を表示してエラーで終了
+# テーブル名を指定しなければ、入力待ちで入力を促す、入力してればその値を$1として変数に格納する
 
-if [ -z "${1}"]; then
-    echo "使い方：reset_table 引数（テーブル名）"
-    exit 1
+if [ -z "${1}" ]; then
+    echo "テーブル名を入力してください : ......入力待ち"
+    read table_name
+    echo "テーブル名:"${table_name}" : 入力済み"
 
+else
+
+    echo "テーブル名が 正しく入力されています"
+    table_name="${1}"
+    echo "テーブル名:"${table_name}" : 入力済み"
 fi
 
-# 入力値 : テーブル名の変数
-# 入力値を受け付ける場合、入力値があることを確認してから変数を利用したいのでこの順序でいい
 
-table_name="${1}"
 
 # 現在の格納場所から基準となるSQLStudyまでの絶対パス
 # DBまでの絶対パス
 
-BASE_DIR="$(cd "$(dirname "${BASHSOURCE[0]}")/.." && pwd)"
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DB="${BASE_DIR}"/db/study.db
 
-#　入力されたテーブル名が　sqlite_master にあるか調べるチェック値
-
-table_check="$(sqlite3 "${DB}" "SELECT '存在します' FROM sqlite_master WHERE tbl_name = '${table_name}';")"
-
-# チェック値の結果を表示
-
-echo "${table_check}"
-
-# 入力されたテーブル名があれば　存在する　なければ存在していないと表示し　エラーで終了させる
-
-if [ "${table_check}" = "存在します" ]; then
-
-    echo "テーブルは存在します"
-
-else 
-
-    echo "テーブルが存在していません！！ resetを実行できません"
-    exit 1
-fi
-
-# テーブルが存在する場合　そのままresetの処理を実行するか　入力を受け付ける　
-# y: 実行でDROP TABLE  | n:そのまま正常終了 | それ以外の文字:y/nを入力させるように促し、エラーで終了させる
-# y で実行を選択すると
-# テーブルの削除に成功したなら　成功したことを表示、これで一連の処理が終わったので正常終了
-# テーブルの削除に失敗したなら　失敗したことを表示、エラーで終了する
 
 
-if [ "${table_check}" = "存在します" ]; then
+# 入力されたテーブル名を基に sqlite_master を検索し、
+# テーブルが存在する場合は削除確認へ進み、存在しない場合はエラーで終了する
+# y: DROP TABLEを実行 | n: 何もせず正常終了 | それ以外: 入力エラーで終了
+# yを選択した場合は、削除結果を終了ステータスで判定する
+# 削除成功時はメッセージを表示して正常終了し、失敗時はエラーで終了する
+
+
+if sqlite3 "${DB}" "SELECT tbl_name FROM sqlite_master WHERE tbl_name = '${table_name}';" | grep -q .; then
+
+    echo ""${table_name}"テーブルは存在します"
 
     echo "そのままresetを実行しますか？ : 実行する > y | 実行しない > n"
 
@@ -86,14 +73,13 @@ if [ "${table_check}" = "存在します" ]; then
 
     fi
 
-else
 
-    echo "テーブルが存在しないため削除できません"
+else 
 
+    echo "テーブルが存在していません！！ resetを実行できません"
     exit 1
-
-
 fi
+
 
 
 
