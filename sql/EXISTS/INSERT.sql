@@ -37,9 +37,9 @@ INSERT INTO init_reset_test VALUES ('1');
 --================================================
 
 INSERT INTO init_reset_test2 VALUES ('2');
+INSERT INTO init_reset_test2 VALUES ('a1');
 
 -- ===============================================
 -- init_sql テスト ダミー
 --================================================
 
-INSERT INTO init_reset_test3 VALUES ('3');
