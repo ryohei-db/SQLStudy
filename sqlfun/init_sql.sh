@@ -117,13 +117,9 @@ else
         echo "これから"${insert_file}"内の"${table_name}":"${table_name}" のINSERT文を実行します"
 
         
-        # CREATE と同じ形式だと行ごとに ; があるから対応できないから 7/14 修正
-
 
         in_tab_sql="$(awk -v table="${table_name}" '
        
-        
-
 
         $1 == "INSERT" && $2 == "INTO" && $3 == table {
 

@@ -25,3 +25,21 @@ INSERT INTO TestScore VALUES ('300', '算数', 40);
 INSERT INTO TestScore VALUES ('300', '国語', 90);
 INSERT INTO TestScore VALUES ('300', '社会', 55);
 INSERT INTO TestScore VALUES ('400', '算数', 80);
+
+-- ===============================================
+-- init_sql テスト 引数あり
+--================================================
+
+INSERT INTO init_reset_test VALUES ('1');
+
+-- ===============================================
+-- init_sql テスト 引数なし対話
+--================================================
+
+INSERT INTO init_reset_test2 VALUES ('2');
+
+-- ===============================================
+-- init_sql テスト ダミー
+--================================================
+
+INSERT INTO init_reset_test3 VALUES ('3');
