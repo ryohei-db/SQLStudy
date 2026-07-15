@@ -4,7 +4,7 @@
 # .bashrc の BASE_DIR は .bashrc の位置を基準としているため、このスクリプトでは使用できない
 # このスクリプトを基準とした BASE_DIR を作成する
 
-BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 # 1 : SQL_Study　へ移動する
 
