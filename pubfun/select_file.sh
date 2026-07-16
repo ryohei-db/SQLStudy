@@ -55,13 +55,51 @@ else
     
     read select_exec
 
-    if [ "${select_exec}" = "sql" ]; then
+    if [ "${select_exec}" = "bash" ]; then
+
+        echo "そのまま実行しますか？・・・実行する : y  実行しない : n"
+
+        read exec_check
+
+        if [ "${exec_check}" = "y" ]; then
+
+            bash "${tar_file_ps}"
+
+            if [ "$?" -eq 0 ]; then 
+
+                echo ""${tar_file_ps}"ファイル実行が成功しました"
+
+                exit 0
+            
+            else
+
+                echo ""${tar_file_ps}"ファイル実行に失敗しました"
+
+                exit 1
+            
+            fi
+        
+        elif [ "${exec_check}" = "n" ]; then
+
+            echo "そのまま終了します"
+            exit 0
+
+        else
+
+            echo "実行方法の指定の仕方が誤っています y か n を入力してください"
+
+            exit 1
+        
+        
+        fi
+
+
+    elif [ "${select_exec}" = "sql" ]; then
 
         
         echo "そのまま実行しますか？・・・実行する : y  実行しない : n"
 
         read exec_check
-
 
         if [ "${exec_check}" = 'y' ]; then
 
@@ -89,8 +127,8 @@ else
         
         else
 
-            echo "実行方法の指定の仕方が誤っています y か n を入力してください"
-
+            echo "実行可否の指定が誤っています。y か n を入力してください"
+            
             exit 1
         
         fi
@@ -98,7 +136,7 @@ else
 
     else 
 
-        echo "実行方法の選択が誤っています・・・.sqlなら：sql"
+        echo "実行方法の選択が誤っています・・・.sqlなら：sql .shなら : bash"
 
         exit 1
     
