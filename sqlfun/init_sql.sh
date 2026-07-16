@@ -7,7 +7,18 @@
  if [ -z "${1}" ] || [ -z "${2}" ]; then
     echo "フォルダ名 ファイル名 を入力してください : 入力待ち...."
     read folder table_name
-    echo "フォルダ名:"${folder}" テーブル名:"${table_name}" : 入力済み"
+
+    if [ -z "${folder}" ] || [ -z "${table_name}" ]; then
+
+        echo "入力値が空のままです"
+
+        exit 1
+    
+    else
+
+        echo "フォルダ名:"${folder}" テーブル名:"${table_name}" : 入力済み"
+
+    fi    
 
 else
     echo "フォルダ名 ファイル名 が すべて正しく入力されています"
