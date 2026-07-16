@@ -30,3 +30,4 @@ SQL / Linux / SQLite 学習環境
 - init_sql() : CREATE・INSERTを自動実行し、初回のテーブル作成とデータ登録を自動化
 - gsave() : タイトルの生成と命名、GitHubへのアップロードを自動化
 - reset_table() : テーブルの存在確認・実行確認を行い、安全にDROP TABLEを実行
+- select_file() :対象ファイルの選択・存在確認・実行を行う共通実行基盤
