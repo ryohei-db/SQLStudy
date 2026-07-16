@@ -19,7 +19,7 @@ else
     folder="$1"
     file_nm="$2"
 
-    echo "格納フォルダ名 :"${folder}" 格納フォルダ名 : "${file_nm}" が入力されています"
+    echo "格納フォルダ名 :"${folder}" 格納ファイル名 : "${file_nm}" が入力されています"
     
 
 fi
@@ -34,9 +34,91 @@ BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DB=""${BASE_DIR}"/db/study.db"
 
 
-# 対象のファイルパス.sql
+# 対象のファイルパス
+# BASE_DIRを使用して作成しているので対象のファイルの絶対パスになっている
+# そのため存在確認の判定値として利用する
 
-tar_sql_ps=""${BASE_DIR}"/"${folder}"/"${file_nm}""
+tar_file_ps=""${BASE_DIR}"/"${folder}"/"${file_nm}""
+
+
+if [ ! -f "${tar_file_ps}" ]; then
+
+    echo "対象のファイル : "${tar_file_ps}" は存在しないため処理を終了します。"
+
+    exit 1
+
+else
+
+    echo "対象のファイル : "${tar_file_ps}" は存在します。"
+
+    echo "対象のファイル : ${tar_file_ps} の実行方法を入力してください"
+    
+    read select_exec
+
+    if [ "${select_exec}" = "sql" ]; then
+
+        
+        echo "そのまま実行しますか？・・・実行する : y  実行しない : n"
+
+        read exec_check
+
+
+        if [ "${exec_check}" = 'y' ]; then
+
+            sqlite3 "${DB}" < "${tar_file_ps}"
+
+            if [ "$?" -eq 0 ]; then
+
+                echo ""${tar_file_ps}"ファイル実行が成功しました"
+
+                exit 0
+            
+            else
+
+                 echo ""${tar_file_ps}"ファイル実行に失敗しました"
+
+                 exit 1
+            
+            fi
+        
+        
+        elif [ "${exec_check}" = 'n' ]; then
+
+            echo "そのまま終了します"
+            exit 0
+        
+        else
+
+            echo "実行方法の指定の仕方が誤っています y か n を入力してください"
+
+            exit 1
+        
+        fi
+
+
+    else 
+
+        echo "実行方法の選択が誤っています・・・.sqlなら：sql"
+
+        exit 1
+    
+    fi
+
+fi
+
+
+
+
+        
+
+
+
+        
+
+
+
+
+
 
 
 
