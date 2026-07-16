@@ -31,3 +31,4 @@ SQL / Linux / SQLite 学習環境
 - gsave() : タイトルの生成と命名、GitHubへのアップロードを自動化
 - reset_table() : テーブルの存在確認・実行確認を行い、安全にDROP TABLEを実行
 - select_file() :対象ファイルの選択・存在確認・実行を行う共通実行基盤
+- bk_db() : SQLiteデータベースを日時付きで複製し、cronによって定期的にバックアップする機能
