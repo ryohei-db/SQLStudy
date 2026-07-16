@@ -12,6 +12,18 @@ if [ -z "$1" ] || [ -z "$2" ]; then
 
     read folder file_nm
 
+    if [ -z "${folder}" ] || [ -z "${table_name}" ]; then
+
+        echo "入力値が空のままです"
+
+        exit 1
+
+    else
+
+        echo "入力値が正常に入力されています"
+
+    fi
+
 else
 
     echo "格納フォルダ名 ファイル名 が正常に入力されいます"
