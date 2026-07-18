@@ -30,6 +30,19 @@ if[ ! "${BACKUP_DIR}" -d ]; then
 
 fi
 
+BACKUP_NAME="study_"$(date '+Y%m%d%H%M%S')".db"
+
+cp "${DB}" "${BACKUP_DIR}"/"${BACKUP_NAME}"
+
+if [ $? -eq 1 ]; then
+
+echo "バックアップファイルの作成に失敗しました"
+
+exit 1
+
+fi
+
+
 
 
 
