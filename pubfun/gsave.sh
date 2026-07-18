@@ -1,6 +1,6 @@
-#gsave関数の中身　GitHubのタイトルを生成　～　GitHubへアップロード自動化
-
 #!/bin/bash
+
+#gsave関数の中身　GitHubのタイトルを生成　～　GitHubへアップロード自動化
 # .bashrc の BASE_DIR は .bashrc の位置を基準としているため、このスクリプトでは使用できない
 # このスクリプトを基準とした BASE_DIR を作成する
 
