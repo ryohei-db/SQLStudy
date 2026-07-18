@@ -33,7 +33,7 @@ fi
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 # 共通DBのパス
-DB="$BASE_DIR/db/study.db"
+DB=""${BASE_DIR}"/db/study.db"
 
 #各フォルダにあるCREATE・INSERTファイルを定義した変数
 
