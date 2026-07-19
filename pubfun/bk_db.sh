@@ -54,6 +54,15 @@ exit 1
 
 fi
 
+# db_backup にある　ファイルで　30よりも前に作成されたファイルを見つけたら削除
+
+find "${BACKUP_DIR}" -type f -name 'study_*.db' -mtime +30 -delete
+
+
+
+
+
+
 
 
 
