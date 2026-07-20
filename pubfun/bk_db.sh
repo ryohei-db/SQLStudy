@@ -58,6 +58,12 @@ fi
 
 find "${BACKUP_DIR}" -type f -name 'study_*.db' -mtime +30 -delete
 
+# 最新のバックアップファイル30件を残し、31件目以降は削除する
+
+ls -t "${BACKUP_DIR}" | tail -n +31 | xargs rm
+
+
+
 
 
 
