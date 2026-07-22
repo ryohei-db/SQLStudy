@@ -1,3 +1,0 @@
-
-0 0 * * * bash "/mnt/c/DEV/SQLStudy/pubfun/gsave.sh"
-
