@@ -1,0 +1,3 @@
+
+*/2 * * * * bash "/mnt/c/DEV/SQLStudy/pubfun/gsave.sh"
+
