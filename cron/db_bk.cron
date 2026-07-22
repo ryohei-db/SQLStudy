@@ -1,2 +1,8 @@
 
-45 23 * * * bash "/mnt/c/DEV/SQLStudy/sqlfun/bk_db.sh"
+45 23 * * * bash "/mnt/c/DEV/SQLStudy/sqlfun/bk_db.sh" >> /tmp/script.log 2>&1
+
+
+
+
+
+
