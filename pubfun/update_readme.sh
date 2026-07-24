@@ -10,8 +10,15 @@ BASE_DIR="$(cd "$(dirname "${BASH_SORUCE[0]}")/.." && pwd)"
 
 TREE_DATA="$(cd "${BASE_DIR}" && tree -I ".git")"
 
+# README を表すファイルパス
 
 README=""${BASE_DIR}"/README.md"
+
+# READMEの更新結果
+# <!-- TREE_START --> が見つかれば <!-- TREE_START --> を出力、その次の行を読み進める
+# <!-- TREE_END --> が見つかれば ディレクトリツリー、<!-- TREE_END -->を出力、その次の行を読み進める
+# <!-- TREE_START -->　<!-- TREE_END -->　の前後も出力し、READMEの内容をそのまま出力
+# <!-- TREE_START --> が最後まで見つからないなら、エラーで終了
 
 NEW_README="$(
 
@@ -69,12 +76,16 @@ END {
 
 ' "${README}")"
 
+# 前段の変数に格納されている　置き換え・出力処理が失敗するとエラーで終了
 
 if [ $? -ne 0 ]; then
 
     exit 1
 fi
 
+# 置き換え・出力結果を README.md へ反映する
+
+printf '%s\n' "${NEW_README}" > "${README}"
 
 
 
