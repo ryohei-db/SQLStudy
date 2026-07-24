@@ -53,9 +53,11 @@ SQL / Linux / SQLite 学習環境
 │   ├── study_20260721171001.db
 │   ├── study_20260721171201.db
 │   ├── study_20260721234500.db
-│   └── study_20260723234500.db
+│   ├── study_20260723234500.db
+│   └── study_20260724234502.db
 ├── docs
 │   ├── design
+│   │   ├── GitHub_CI_shellcheck.md
 │   │   ├── github_purpose.md
 │   │   └── scripts_purpose.md
 │   ├── development_log
@@ -114,7 +116,7 @@ SQL / Linux / SQLite 学習環境
     ├── init_sql.sh
     └── reset_table.sh
 
-17 directories, 53 files
+17 directories, 55 files
 ```
 <!-- TREE_END -->
 
