@@ -42,19 +42,80 @@ SQL / Linux / SQLite 学習環境
 ## ディレクトリ構成 (樹形図)
 
 <!-- TREE_START -->
-
 ```text
+.
+├── README.md
+├── cron
+│   └── db_bk.cron
+├── db
+│   └── study.db
+├── db_backup
+│   ├── study_20260721171001.db
+│   ├── study_20260721171201.db
+│   ├── study_20260721234500.db
+│   └── study_20260723234500.db
+├── docs
+│   ├── design
+│   │   ├── github_purpose.md
+│   │   └── scripts_purpose.md
+│   ├── development_log
+│   │   ├── bk_db_log.md
+│   │   ├── bk_dk_cron_log.md
+│   │   ├── gsave_ver1.01_log.md
+│   │   ├── reset_table_log.md
+│   │   ├── select_file_log.md
+│   │   └── update_readme_log.md
+│   ├── script_features
+│   │   ├── BASE_DIR_what.md
+│   │   ├── DB_what.md
+│   │   ├── bk_db.md
+│   │   ├── gsave.md
+│   │   ├── gsave_ver1.01.md
+│   │   ├── init_sql.md
+│   │   ├── reset_table.md
+│   │   ├── select_file.md
+│   │   └── update_readme.md
+│   └── test
+│       ├── bk_db_test1_2026_07_21.md
+│       ├── gsave_test_1_2026_07_06.md
+│       ├── gsave_ver1.01_test.md
+│       ├── init_sql_test_1_2026_07_12-14.md
+│       ├── init_sql_test_2_2026_07_16.md
+│       ├── reset_table_test_1_2026_07_12-14.md
+│       ├── reset_table_test_2_2026_07_16.md
+│       ├── select_file_test_1_2026_07_16.md
+│       └── update_readme_test1_2026_07_24.md
+├── pubfun
+│   ├── gsave.sh
+│   ├── select_file.sh
+│   └── update_readme.sh
+├── sql
+│   ├── EXISTS
+│   │   ├── CREATE.sql
+│   │   ├── INSERT.sql
+│   │   └── SELECT.sql
+│   ├── HAVING
+│   │   ├── CREATE.sql
+│   │   ├── INSERT.sql
+│   │   ├── RESET.sql
+│   │   └── SELECT.sql
+│   ├── OUTER_JOIN
+│   │   ├── CREATE.sql
+│   │   ├── INSERT.sql
+│   │   └── SELECT.sql
+│   ├── SELF_JOIN
+│   │   ├── CREATE.sql
+│   │   ├── INSERT.sql
+│   │   └── SELECT.sql
+│   └── test
+│       └── scratch.sql
+└── sqlfun
+    ├── bk_db.sh
+    ├── init_sql.sh
+    └── reset_table.sh
 
-
-
-
-
-
-
-
-
+17 directories, 53 files
 ```
-
 <!-- TREE_END -->
 
 ## Environment ：使用ツール
@@ -71,5 +132,3 @@ SQL / Linux / SQLite 学習環境
 - `reset_table()` : テーブルの存在確認・実行確認を行い、安全に `DROP TABLE` を実行
 - `select_file()` : 対象ファイルの選択・存在確認・実行を行う共通実行基盤
 - `bk_db()` : SQLite データベースを日時付きでバックアップし、古いバックアップを自動削除
-
-

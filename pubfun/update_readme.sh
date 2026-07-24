@@ -4,9 +4,9 @@
 
 # 開発の基準となるSQLStudy の絶対パスを取得する
 
-BASE_DIR="$(cd "$(dirname "${BASH_SORUCE[0]}")/.." && pwd)"
+BASE_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 
-# SQLStudyへ移動し、treeコマンドの実行結果を変数へ保存する
+# SQLStudyへ移動し、treeコマンドの実行結果を変数へ保存する .gitディレクトリは除外する
 
 TREE_DATA="$(cd "${BASE_DIR}" && tree -I ".git")"
 
