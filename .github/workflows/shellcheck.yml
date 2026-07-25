@@ -1,0 +1,20 @@
+# このGitHub Action(ワークフロー) につける名前
+# このワークフローの名前は shellcheck
+
+name: shellcheck
+
+on:
+
+  push:
+
+jobs:
+  
+
+
+
+
+
+
+
+
+
