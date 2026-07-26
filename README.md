@@ -11,6 +11,18 @@ SQL / Linux / SQLite 学習環境
 
 ## ディレクトリ構成
 
+- `.github/`
+  - GitHub 関連の設定を管理する。
+
+- `.github/workflows`
+  - GitHub Actions の Workflow ファイルを配置する。
+
+- `.vscode/`
+  - プロジェクトで共通利用する VS Code の設定を管理する。
+
+- `cron/`
+  - 定期実行で使用する cron 設定ファイルを管理する。
+
 - `db/`
   - SQLite データベースファイルを管理する。
 
@@ -18,7 +30,7 @@ SQL / Linux / SQLite 学習環境
   - データベースのバックアップを保存する。
 
 - `docs/design/`
-  - 設計方針や各スクリプトの概要を管理する。
+  - 設計方針や導入理由などの設計資料を管理する。
 
 - `docs/development_log/`
   - 開発中の検討内容や設計変更の履歴を記録する。
@@ -39,11 +51,17 @@ SQL / Linux / SQLite 学習環境
   - SQL 関連の処理を行うスクリプトを配置する。
 
 
+
 ## ディレクトリ構成 (樹形図)
 
 <!-- TREE_START -->
 ```text
 .
+├── .github
+│   └── workflows
+│       └── shellcheck.yml
+├── .vscode
+│   └── settings.json
 ├── README.md
 ├── cron
 │   └── db_bk.cron
@@ -54,13 +72,15 @@ SQL / Linux / SQLite 学習環境
 │   ├── study_20260721171201.db
 │   ├── study_20260721234500.db
 │   ├── study_20260723234500.db
-│   └── study_20260724234502.db
+│   ├── study_20260724234502.db
+│   └── study_20260726234500.db
 ├── docs
 │   ├── design
-│   │   ├── GitHub_CI_shellcheck.md
+│   │   ├── GitHub_Actions_CI_shellcheck.md
 │   │   ├── github_purpose.md
 │   │   └── scripts_purpose.md
 │   ├── development_log
+│   │   ├── GitHub_Actions_CI_shellcheck_log.md
 │   │   ├── bk_db_log.md
 │   │   ├── bk_dk_cron_log.md
 │   │   ├── gsave_ver1.01_log.md
@@ -116,7 +136,7 @@ SQL / Linux / SQLite 学習環境
     ├── init_sql.sh
     └── reset_table.sh
 
-17 directories, 55 files
+20 directories, 59 files
 ```
 <!-- TREE_END -->
 

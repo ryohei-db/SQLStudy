@@ -7,12 +7,13 @@
 BASE_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 
 # SQLStudyへ移動し、treeコマンドの実行結果を変数へ保存する .gitディレクトリは除外する
+# ただし　.がついている隠しディレクトリである　.githubディレクトリは表示させる
 
-TREE_DATA="$(cd "${BASE_DIR}" && tree -I ".git")"
+TREE_DATA="$(cd "${BASE_DIR}" && tree -a -I ".git")"
 
 # README を表すファイルパス
 
-README=""${BASE_DIR}"/README.md"
+README="${BASE_DIR}/README.md"
 
 # READMEの更新結果
 # <!-- TREE_START --> が見つかれば <!-- TREE_START --> を出力、その次の行を読み進める
@@ -20,7 +21,7 @@ README=""${BASE_DIR}"/README.md"
 # <!-- TREE_START -->　<!-- TREE_END -->　の前後も出力し、READMEの内容をそのまま出力
 # <!-- TREE_START --> が最後まで見つからないなら、エラーで終了
 
-NEW_README="$(
+if ! NEW_README="$(
 
 awk -v tree_data="${TREE_DATA}" '
 
@@ -74,11 +75,7 @@ END {
 
 }
 
-' "${README}")"
-
-# 前段の変数に格納されている　置き換え・出力処理が失敗するとエラーで終了
-
-if [ $? -ne 0 ]; then
+' "${README}")"; then
 
     exit 1
 fi

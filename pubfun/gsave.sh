@@ -8,9 +8,7 @@ BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 # 1 : SQL_Study　へ移動する
 
-cd "${BASE_DIR}"
-
-if [ $? -ne 0 ]; then
+if ! cd "${BASE_DIR}"; then
     echo "エラー：SQLStudyへの移動に失敗しました。" >&2
     exit 1
 fi
