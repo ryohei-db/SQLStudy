@@ -20,6 +20,9 @@ SQL / Linux / SQLite 学習環境
 - `.vscode/`
   - プロジェクトで共通利用する VS Code の設定を管理する。
 
+- `config/`
+    - プロジェクト全体で共通利用する設定ファイルを管理する。
+
 - `cron/`
   - 定期実行で使用する cron 設定ファイルを管理する。
 
@@ -63,6 +66,8 @@ SQL / Linux / SQLite 学習環境
 ├── .vscode
 │   └── settings.json
 ├── README.md
+├── config
+│   └── settings.conf
 ├── cron
 │   └── db_bk.cron
 ├── db
@@ -137,7 +142,7 @@ SQL / Linux / SQLite 学習環境
     ├── init_sql.sh
     └── reset_table.sh
 
-20 directories, 60 files
+21 directories, 61 files
 ```
 <!-- TREE_END -->
 
