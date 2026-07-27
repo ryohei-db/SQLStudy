@@ -156,6 +156,10 @@ SQL / Linux / SQLite 学習環境
 - `select_file()` : 対象ファイルの選択・存在確認・実行を行う共通実行基盤
 - `bk_db()` : SQLite データベースを日時付きでバックアップし、古いバックアップを自動削除
 
+## Automation ： 自動化
+
+- `cron` ： `bk_db.sh` を定期実行し、SQLite データベースのバックアップを自動作成
+
 ## Quality Control ： 品質管理
 
 - `ShellCheck` ： シェルスクリプトの構文・記述上の問題を自動チェック
