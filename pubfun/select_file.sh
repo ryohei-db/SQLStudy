@@ -11,7 +11,7 @@ if [ -z "$1" ] || [ -z "$2" ]; then
 
     if [ -z "${folder}" ] || [ -z "${file_nm}" ]; then
 
-        echo "入力値が空のままです"
+        echo "入力値が空のままです" >&2
 
         exit 1
 
@@ -52,7 +52,7 @@ tar_file_ps="${BASE_DIR}/${folder}/${file_nm}"
 
 if [ ! -f "${tar_file_ps}" ]; then
 
-    echo "対象のファイル : ${tar_file_ps} は存在しないため処理を終了します。"
+    echo "対象のファイル : ${tar_file_ps} は存在しないため処理を終了します。" >&2
 
     exit 1
 
@@ -74,7 +74,7 @@ else
 
             if ! bash "${tar_file_ps}"; then
 
-                echo "${tar_file_ps}ファイル実行に失敗しました"
+                echo "${tar_file_ps}ファイル実行に失敗しました" >&2
 
                 exit 1
             
@@ -93,7 +93,7 @@ else
 
         else
 
-            echo "実行方法の指定の仕方が誤っています y か n を入力してください"
+            echo "実行方法の指定の仕方が誤っています y か n を入力してください" >&2
 
             exit 1
         
@@ -111,7 +111,7 @@ else
 
             if ! sqlite3 "${DB}" < "${tar_file_ps}"; then
 
-                echo "${tar_file_ps}ファイル実行に失敗しました"
+                echo "${tar_file_ps}ファイル実行に失敗しました" >&2
 
                  exit 1
             
@@ -131,7 +131,7 @@ else
         
         else
 
-            echo "実行可否の指定が誤っています。y か n を入力してください"
+            echo "実行可否の指定が誤っています。y か n を入力してください" >&2
             
             exit 1
         
@@ -140,7 +140,7 @@ else
 
     else 
 
-        echo "実行方法の選択が誤っています・・・.sqlなら：sql .shなら : bash"
+        echo "実行方法の選択が誤っています・・・.sqlなら：sql .shなら : bash" >&2
 
         exit 1
     

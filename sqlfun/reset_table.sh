@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 # bashで実行するという指示　これは絶対つける
 
@@ -10,27 +10,23 @@
 
 if [ -z "${1}" ]; then
     echo "テーブル名を入力してください : ......入力待ち"
-    read table_name
+    read -r table_name
 
     
     if [ -z "${table_name}" ]; then
 
-        echo "入力値が空のままです"
+        echo "入力値が空のままです" >&2
         
         exit 1
-
-    else
-
-        echo "テーブル名:"${table_name}" : 入力済み"
-
     fi
-  
+
+    echo "テーブル名:${table_name} : 入力済み"
 
 else
 
     echo "テーブル名が 正しく入力されています"
     table_name="${1}"
-    echo "テーブル名:"${table_name}" : 入力済み"
+    echo "テーブル名:${table_name} : 入力済み"
 fi
 
 
@@ -38,7 +34,7 @@ fi
 # DBまでの絶対パス
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DB="${BASE_DIR}"/db/study.db
+DB="${BASE_DIR}/db/study.db"
 
 
 
@@ -49,50 +45,42 @@ DB="${BASE_DIR}"/db/study.db
 # 削除成功時はメッセージを表示して正常終了し、失敗時はエラーで終了する
 
 
-if sqlite3 "${DB}" "SELECT tbl_name FROM sqlite_master WHERE tbl_name = '${table_name}';" | grep -q .; then
+if sqlite3 "${DB}" "SELECT tbl_name FROM sqlite_master WHERE type = 'table' AND tbl_name = '${table_name}';" | grep -q .; then
 
-    echo ""${table_name}"テーブルは存在します"
+    echo "${table_name}テーブルは存在します"
+    echo "resetを実行しますか？ : 実行する > y | 実行しない > n"
 
-    echo "そのままresetを実行しますか？ : 実行する > y | 実行しない > n"
-
-    read reset_exec
+    read -r reset_exec
 
     if [ "${reset_exec}" = "y" ]; then
 
-        sqlite3 "${DB}" "DROP TABLE ${table_name};"
+         if ! sqlite3 "${DB}" "DROP TABLE IF EXISTS ${table_name};"; then
+            echo "テーブル:${table_name}の削除に失敗しました" >&2
+            exit 1
+        fi
 
+        echo "テーブル:${table_name}を削除しました"
+        exit 0
 
-            if [ $? = 0 ]; then 
-
-                echo "テーブル:"${table_name}"を削除しました"
-                
-                exit 0
-            else
-
-                echo "テーブル:"${table_name}"の削除に失敗しました"
-                
-                exit 1
-            fi
         
     elif [ "${reset_exec}" = "n" ]; then
 
+        echo "テーブルの削除を中止しました"
         exit 0
 
     else
 
-        echo "y または n を入力してください"
+        echo "y または n を入力してください" >&2
 
         exit 1
 
     fi
 
-
-else 
-
-    echo "テーブルが存在していません！！ resetを実行できません"
+else
+    echo "${table_name}テーブルは存在しません。resetを実行できません" >&2
     exit 1
 fi
-
+    
 
 
 

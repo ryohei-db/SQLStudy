@@ -9,28 +9,28 @@ BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 # データベースとバックアップ先のパス
 
-DB=""${BASE_DIR}"/db/study.db"
+DB="${BASE_DIR}/db/study.db"
 
-BACKUP_DIR=""${BASE_DIR}"/db_backup"
+BACKUP_DIR="${BASE_DIR}/db_backup"
 
 
 # データベースの存在確認
 
 if [ ! -f "${DB}" ]; then
 
-    echo ""${DB}"が存在しません"
+    echo "${DB}が存在しません" >&2
 
     exit 1
 
 fi
 
-echo ""${DB}"が存在します"
+echo "${DB}が存在します"
 
 # バックアップディレクトリがなければ作成
 
 if [ ! -d "${BACKUP_DIR}"  ]; then
 
-    echo ""${BACKUP_DIR}"が存在しません"
+    echo "${BACKUP_DIR}が存在しません!! ディレクトリを作成します"
 
     mkdir -p "${BACKUP_DIR}"
 
@@ -38,19 +38,15 @@ fi
 
 # バックアップファイル名を作成
 
-BACKUP_NAME="study_"$(date '+%Y%m%d%H%M%S')".db"
+BACKUP_NAME="study_$(date '+%Y%m%d%H%M%S').db"
 
 # データベースをバックアップ
 
-cp "${DB}" "${BACKUP_DIR}"/"${BACKUP_NAME}"
+if ! cp "${DB}" "${BACKUP_DIR}"/"${BACKUP_NAME}"; then
 
-# バックアップ成功確認
+    echo "バックアップファイルの作成に失敗しました" >&2
 
-if [ $? -ne 0 ]; then
-
-echo "バックアップファイルの作成に失敗しました"
-
-exit 1
+    exit 1
 
 fi
 
@@ -59,8 +55,12 @@ fi
 find "${BACKUP_DIR}" -type f -name 'study_*.db' -mtime +30 -delete
 
 # 最新のバックアップファイル30件を残し、31件目以降は削除する
+# shellcheck disable=SC2012
+# バックアップファイル名はスクリプトで生成しており、空白・特殊文字を含まないため ls を使用する。
 
 ls -t "${BACKUP_DIR}" | tail -n +31 | xargs rm
+
+
 
 
 

@@ -6,17 +6,17 @@
 
  if [ -z "${1}" ] || [ -z "${2}" ]; then
     echo "フォルダ名 テーブル名 を入力してください : 入力待ち...."
-    read folder table_name
+    read -r folder table_name
 
     if [ -z "${folder}" ] || [ -z "${table_name}" ]; then
 
-        echo "入力値が空のままです"
+        echo "入力値が空のままです" >&2
 
         exit 1
     
     else
 
-        echo "フォルダ名:"${folder}" テーブル名:"${table_name}" : 入力済み"
+        echo "フォルダ名:${folder} テーブル名:${table_name} : 入力済み"
 
     fi    
 
@@ -24,7 +24,7 @@ else
     echo "フォルダ名 テーブル名 が すべて正しく入力されています"
     folder="${1}"
     table_name="${2}"
-    echo "フォルダ名:"${folder}" テーブル名:"${table_name}" : 入力済み"
+    echo "フォルダ名:${folder} テーブル名:${table_name} : 入力済み"
 fi
 
 # init_sql.sh の格納場所から1つ上へ移動
@@ -33,7 +33,7 @@ fi
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 # 共通DBのパス
-DB=""${BASE_DIR}"/db/study.db"
+DB="${BASE_DIR}/db/study.db"
 
 #各フォルダにあるCREATE・INSERTファイルを定義した変数
 
@@ -43,14 +43,14 @@ insert_file="${BASE_DIR}/sql/${folder}/INSERT.sql"
 #フォルダにCREATEがない場合、"CREATE.sql が存在しません: ${create_file}"　と表示して　終了
 
 if [ ! -f "${create_file}" ]; then
-    echo ""${folder}"/CREATE.sql が存在しません: ${create_file}"
+    echo "${folder}/CREATE.sql が存在しません: ${create_file}" >&2
     exit 1
 fi
 
 #フォルダにINSERTがない場合、"INSERT.sql が存在しません: ${insert_file}"　と表示して　終了
 
 if [ ! -f "${insert_file}" ]; then
-    echo ""${folder}"/INSERT.sql が存在しません: ${insert_file}"
+    echo "${folder}/INSERT.sql が存在しません: ${insert_file}" >&2
     exit 1
 fi
 
@@ -65,18 +65,18 @@ fi
 
 if sqlite3 "${DB}" "SELECT name FROM sqlite_master WHERE type = 'table' AND name = '${table_name}';" | grep -q .; then
     
-    echo ""${table_name}"テーブル は存在するのでそのまま終了します"
+    echo "${table_name}テーブル は存在するのでそのまま終了します"
 
     exit 0
 
 else
     
-    echo ""${table_name}"テーブル は存在しないので新規テーブルの作成処理を開始します"
+    echo "${table_name}テーブル は存在しないので新規テーブルの作成処理を開始します"
 
-    echo "これから"${create_file}"内の"${table_name}": "${table_name}" のCREATE文を実行します"
+    echo "これから${create_file}内の${table_name} のCREATE文を実行します"
     
 
-    cr_tab_sql="$(
+    if ! cr_tab_sql="$(
     awk -v table="${table_name}" '
 
     $1 == "CREATE" && $2 == "TABLE" && $3 == table {
@@ -108,121 +108,98 @@ else
         }
 
     }' "${create_file}" 
-     )"
+     )"; then
 
-    if [ $? -eq 0 ]; then
-
-        echo ""${table_name}" のCREATE文を抽出できました"
-
-        echo "----- 抽出SQL確認 -----"
-        echo "${cr_tab_sql}"
-        echo "----------------------"
-    
-    else
-
-        echo ""${table_name}" のCREATE文の抽出に失敗しました"
+        echo "${table_name} のCREATE文の抽出に失敗しました" >&2
         exit 1
-    
+
     fi
 
-    echo "${cr_tab_sql}" | sqlite3 "${DB}"
-        
-    if [ $? -eq 0 ]; then 
+    echo "${table_name} のCREATE文を抽出できました"
 
-        echo ""${table_name}" のCREATE文の実行に成功しました"
+    echo "----- 抽出SQL確認 -----"
+    echo "${cr_tab_sql}"
+    echo "----------------------"
 
-        echo "これから"${insert_file}"内の"${table_name}":"${table_name}" のINSERT文を実行します"
+    if ! printf '%s\n' "${cr_tab_sql}" | sqlite3 "${DB}"; then
 
-        
-        in_tab_sql="$(awk -v table="${table_name}" '
+        echo "${table_name}:CREATE文の実行に失敗しました" >&2
+
+        exit 1
+    fi
+
+    echo "${table_name} のCREATE文の実行に成功しました" 
+
+    echo "これから${insert_file}内の${table_name} のINSERT文を実行します"
+
+    if ! in_tab_sql="$(awk -v table="${table_name}" '
        
 
-        $1 == "INSERT" && $2 == "INTO" && $3 == table {
+    $1 == "INSERT" && $2 == "INTO" && $3 == table {
 
-            flag=1
-            found=1
+        flag=1
+        found=1
 
-        }
+    }
 
-        flag {
+    flag {
         
-            print 
+        print 
         
-        }
+    }
 
-        flag && /;/ {
+    flag && /;/ {
         
-            flag=0
+        flag=0
 
-        }
+    }
 
-        END {
+    END {
 
-            if (! found) {
+        if (! found) {
             
 
-                print "対象のテーブル:" table "のINSERT文が見つかりません" > "/dev/stderr"
-                exit 1
-            
-            }
-        
-        
-        
-        }' "${insert_file}" )"
-
-
-        if [ $? -eq 0 ]; then
-
-            echo ""${table_name}" のINSERT文を抽出できました"
-
-            echo "----- 抽出SQL確認 -----"
-            echo "${in_tab_sql}"
-            echo "----------------------"
-
-    
-        else
-
-            echo ""${table_name}" のINSERT文の抽出に失敗しました"
-
-
-            echo ""${table_name}" テーブルを削除します"
-
-            sqlite3 "${DB}" "DROP TABLE ${table_name};"
-            
+            print "対象のテーブル:" table "のINSERT文が見つかりません" > "/dev/stderr"
             exit 1
-    
-        fi
-
-
-        echo "${in_tab_sql}" | sqlite3 "${DB}"
-
-    
-        if [ $? -eq 0 ]; then
-
-         echo ""${table_name}" のINSERT文の実行に成功しました"
-
-         echo ""${table_name}"の作成が完了しました"
-
-         exit 0
+            
+        }
         
-        else
+    }' "${insert_file}" )"; then 
 
-            echo ""${table_name}":INSERT文の実行に失敗しました"
 
-            echo ""${table_name}" テーブルを削除します"
+        echo "${table_name} のINSERT文の抽出に失敗しました" >&2
 
-            sqlite3 "${DB}" "DROP TABLE ${table_name};"
 
-            exit 1
+        echo "${table_name} テーブルを削除します"
 
-        fi
+        sqlite3 "${DB}" "DROP TABLE IF EXISTS ${table_name};"
+            
+        exit 1
 
-    else
+    fi
 
-        echo ""${table_name}":CREATE文の実行に失敗しました"
+    echo "${table_name} のINSERT文を抽出できました"
+
+    echo "----- 抽出SQL確認 -----"
+    echo "${in_tab_sql}"
+    echo "----------------------"
+
+    if ! printf '%s\n' "${in_tab_sql}" | sqlite3 "${DB}"; then
+
+        echo "${table_name}:INSERT文の実行に失敗しました" >&2
+
+        echo "${table_name} テーブルを削除します"
+
+        sqlite3 "${DB}" "DROP TABLE IF EXISTS ${table_name};"
 
         exit 1
     
     fi
-   
+        
+    echo "${table_name} のINSERT文の実行に成功しました"
+
+    echo "${table_name}の作成が完了しました"
+
+    exit 0
+        
 fi
