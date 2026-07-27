@@ -77,6 +77,7 @@ SQL / Linux / SQLite 学習環境
 ├── docs
 │   ├── design
 │   │   ├── GitHub_Actions_CI_shellcheck.md
+│   │   ├── coding_style_2026_07_27.md
 │   │   ├── github_purpose.md
 │   │   └── scripts_purpose.md
 │   ├── development_log
@@ -136,7 +137,7 @@ SQL / Linux / SQLite 学習環境
     ├── init_sql.sh
     └── reset_table.sh
 
-20 directories, 59 files
+20 directories, 60 files
 ```
 <!-- TREE_END -->
 
@@ -154,3 +155,8 @@ SQL / Linux / SQLite 学習環境
 - `reset_table()` : テーブルの存在確認・実行確認を行い、安全に `DROP TABLE` を実行
 - `select_file()` : 対象ファイルの選択・存在確認・実行を行う共通実行基盤
 - `bk_db()` : SQLite データベースを日時付きでバックアップし、古いバックアップを自動削除
+
+## Quality Control ： 品質管理
+
+- `ShellCheck` ： シェルスクリプトの構文・記述上の問題を自動チェック
+- `GitHub Actions` ： push時にShellCheckを自動実行し、問題の早期発見を実施
