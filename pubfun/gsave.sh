@@ -16,9 +16,7 @@ fi
 
 # README を更新する　update_readme.sh を実行する
 
-bash "/mnt/c/DEV/SQLStudy/pubfun/update_readme.sh"
-
-if [ $? -ne 0 ]; then
+if ! bash "/mnt/c/DEV/SQLStudy/pubfun/update_readme.sh"; then
 
     echo "update_readmeの実行(READMEの更新)に失敗しました" >&2
 
@@ -56,9 +54,7 @@ fi
 
 # 3 : SQLStudy直下のファイルを含め、git add.後の状態を表示
 
-git add .
-
-if [ $? -ne 0 ]; then
+if ! git add .; then
 
     echo "エラー : git add. に失敗しました" >&2
 
@@ -73,9 +69,7 @@ git status --short
 
 echo "コミットタイトル：${git_title}"
 
-git commit -m "${git_title}"
-
-if [ $? -ne 0 ]; then
+if ! git commit -m "${git_title}"; then
 
     echo "エラー : git commit に失敗しました" >&2
 
@@ -85,9 +79,7 @@ fi
 
 # 5 GitHubへアップロード、生成されたタイトルを表示、アップロード後の状態を表示
 
-git push
-
-if [ $? -ne 0 ]; then
+if ! git push; then
 
     echo "エラー : git push に失敗しました" >&2
 
