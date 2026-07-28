@@ -44,6 +44,9 @@ SQL / Linux / SQLite 学習環境
 - `docs/test/`
   - 動作確認・検証結果を記録する。
 
+- `logs/`
+ - 実行ログを保存する
+
 - `pubfun/`
   - 複数の機能で共通利用するスクリプトを配置する。
 
@@ -67,7 +70,7 @@ SQL / Linux / SQLite 学習環境
 │   └── settings.json
 ├── README.md
 ├── config
-│   └── settings.conf
+│   └── setteing.conf
 ├── cron
 │   └── db_bk.cron
 ├── db
@@ -78,12 +81,14 @@ SQL / Linux / SQLite 学習環境
 │   ├── study_20260721234500.db
 │   ├── study_20260723234500.db
 │   ├── study_20260724234502.db
-│   └── study_20260726234500.db
+│   ├── study_20260726234500.db
+│   └── study_20260728234500.db
 ├── docs
 │   ├── design
 │   │   ├── GitHub_Actions_CI_shellcheck.md
 │   │   ├── coding_style_2026_07_27.md
 │   │   ├── github_purpose.md
+│   │   ├── log_design.md
 │   │   └── scripts_purpose.md
 │   ├── development_log
 │   │   ├── GitHub_Actions_CI_shellcheck_log.md
@@ -113,10 +118,12 @@ SQL / Linux / SQLite 学習環境
 │       ├── reset_table_test_2_2026_07_16.md
 │       ├── select_file_test_1_2026_07_16.md
 │       └── update_readme_test1_2026_07_24.md
+├── logs
 ├── pubfun
 │   ├── gsave.sh
 │   ├── select_file.sh
-│   └── update_readme.sh
+│   ├── update_readme.sh
+│   └── write_shell_log.sh
 ├── sql
 │   ├── EXISTS
 │   │   ├── CREATE.sql
@@ -140,9 +147,10 @@ SQL / Linux / SQLite 学習環境
 └── sqlfun
     ├── bk_db.sh
     ├── init_sql.sh
+    ├── log_sql.sh
     └── reset_table.sh
 
-21 directories, 61 files
+22 directories, 65 files
 ```
 <!-- TREE_END -->
 
