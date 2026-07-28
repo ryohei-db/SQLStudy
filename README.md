@@ -85,6 +85,9 @@ SQL / Linux / SQLite 学習環境
 │   └── study_20260728234500.db
 ├── docs
 │   ├── design
+│   │   ├── BASE_DIR_2026_07_29.md
+│   │   ├── BASE_DIR_what.md
+│   │   ├── DB_what.md
 │   │   ├── GitHub_Actions_CI_shellcheck.md
 │   │   ├── coding_style_2026_07_27.md
 │   │   ├── github_purpose.md
@@ -99,8 +102,6 @@ SQL / Linux / SQLite 学習環境
 │   │   ├── select_file_log.md
 │   │   └── update_readme_log.md
 │   ├── script_features
-│   │   ├── BASE_DIR_what.md
-│   │   ├── DB_what.md
 │   │   ├── bk_db.md
 │   │   ├── gsave.md
 │   │   ├── gsave_ver1.01.md
@@ -150,7 +151,7 @@ SQL / Linux / SQLite 学習環境
     ├── log_sql.sh
     └── reset_table.sh
 
-22 directories, 65 files
+22 directories, 66 files
 ```
 <!-- TREE_END -->
 
