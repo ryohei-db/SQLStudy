@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -o pipefail
+
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 # shellcheck source=/dev/null
@@ -40,7 +42,10 @@ fi
 # 削除成功時はメッセージを表示して正常終了し、失敗時はエラーで終了する
 
 
-if sqlite3 "${DB}" "SELECT tbl_name FROM sqlite_master WHERE type = 'table' AND tbl_name = '${table_name}';" | grep -q .; then
+if printf '%s\n' \
+    "SELECT tbl_name FROM sqlite_master WHERE type = 'table' AND tbl_name = '${table_name}';" |
+    bash "${BASE_DIR}/sqlfun/log_sql.sh" "テーブル存在確認:${table_name}" |
+    grep -q .; then
 
     echo "${table_name}テーブルは存在します"
     echo "resetを実行しますか？ : 実行する > y | 実行しない > n"
@@ -49,9 +54,12 @@ if sqlite3 "${DB}" "SELECT tbl_name FROM sqlite_master WHERE type = 'table' AND 
 
     if [ "${reset_exec}" = "y" ]; then
 
-         if ! sqlite3 "${DB}" "DROP TABLE IF EXISTS ${table_name};"; then
+        if ! printf '%s\n' "DROP TABLE IF EXISTS ${table_name};" |
+            bash "${BASE_DIR}/sqlfun/log_sql.sh" "DROP:${table_name}"; then
+
             echo "テーブル:${table_name}の削除に失敗しました" >&2
             exit 1
+
         fi
 
         echo "テーブル:${table_name}を削除しました"

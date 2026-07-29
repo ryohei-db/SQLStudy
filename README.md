@@ -92,13 +92,14 @@ SQL / Linux / SQLite 学習環境
 │   │   ├── coding_style_2026_07_27.md
 │   │   ├── github_purpose.md
 │   │   ├── log_design.md
-│   │   └── scripts_purpose.md
+│   │   ├── scripts_purpose.md
+│   │   └── sql_execution_flow.md
 │   ├── development_log
 │   │   ├── GitHub_Actions_CI_shellcheck_log.md
 │   │   ├── bk_db_log.md
 │   │   ├── bk_dk_cron_log.md
 │   │   ├── gsave_ver1.01_log.md
-│   │   ├── log_sql.sh_lpgs.md
+│   │   ├── log_sql.sh_logs.md
 │   │   ├── reset_table_log.md
 │   │   ├── select_file_log.md
 │   │   └── update_readme_log.md
@@ -152,7 +153,7 @@ SQL / Linux / SQLite 学習環境
     ├── log_sql.sh
     └── reset_table.sh
 
-22 directories, 67 files
+22 directories, 68 files
 ```
 <!-- TREE_END -->
 
