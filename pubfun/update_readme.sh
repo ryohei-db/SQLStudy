@@ -1,10 +1,12 @@
 #!/bin/bash
 
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+# shellcheck source=/dev/null
+source "${BASE_DIR}/config/settings.conf"
+
+
 # update_readme() の中身
-
-# 開発の基準となるSQLStudy の絶対パスを取得する
-
-BASE_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 
 # SQLStudyへ移動し、treeコマンドの実行結果を変数へ保存する .gitディレクトリは除外する
 # ただし　.がついている隠しディレクトリである　.githubディレクトリは表示させる

@@ -1,5 +1,10 @@
 #!/bin/bash
 
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+# shellcheck source=/dev/null
+source "${BASE_DIR}/config/settings.conf"
+
 # init_sql() : テーブル作成関数の中身
 
 # フォルダ名・テーブル名  の指定がなければ、入力を受け付けて入力を促す あれば　それぞれの値を$1/$2として　変数に代入する
@@ -27,10 +32,6 @@ else
     echo "フォルダ名:${folder} テーブル名:${table_name} : 入力済み"
 fi
 
-# init_sql.sh の格納場所から1つ上へ移動
-# SQLStudy を BASE_DIR とする
-
-BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 # 共通DBのパス
 DB="${BASE_DIR}/db/study.db"

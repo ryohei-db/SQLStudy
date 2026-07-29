@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# bashで実行するという指示　これは絶対つける
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+# shellcheck source=/dev/null
+source "${BASE_DIR}/config/settings.conf"
 
 #　reset_table() : テーブル削除関数の中身
 
@@ -30,10 +33,8 @@ else
 fi
 
 
-# 現在の格納場所から基準となるSQLStudyまでの絶対パス
 # DBまでの絶対パス
 
-BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DB="${BASE_DIR}/db/study.db"
 
 

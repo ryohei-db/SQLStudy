@@ -1,11 +1,13 @@
 #!/bin/bash
 
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+# shellcheck source=/dev/null
+source "${BASE_DIR}/config/settings.conf"
+
 # bk_db() DBのバックアップの中身
 # 初期実装では else を用いて正常処理をネストしていたが、可読性向上のため Early Exit を採用し、異常系のみを if で処理する構成へリファクタリングした。
 
-# スクリプトの基準ディレクトリを取得
-
-BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 # データベースとバックアップ先のパス
 

@@ -1,10 +1,12 @@
 #!/bin/bash
 
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+# shellcheck source=/dev/null
+source "${BASE_DIR}/config/settings.conf"
+
 #gsave関数の中身　GitHubのタイトルを生成　～　GitHubへアップロード自動化
 # .bashrc の BASE_DIR は .bashrc の位置を基準としているため、このスクリプトでは使用できない
-# このスクリプトを基準とした BASE_DIR を作成する
-
-BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 # 1 : SQL_Study　へ移動する
 

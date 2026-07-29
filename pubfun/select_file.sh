@@ -1,4 +1,11 @@
 #!/bin/bash
+
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+# shellcheck source=/dev/null
+source "${BASE_DIR}/config/settings.conf"
+
+
 # select_file() の中身　
 
 # $1(folder)にはBASE_DIR から見た格納フォルダパスを入力する
@@ -33,10 +40,6 @@ else
 
 fi
 
-# select_file.sh の格納場所から1つ上へ移動
-# SQLStudy を BASE_DIR とする
-
-BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 # 共通DBのパス
 
