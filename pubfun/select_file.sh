@@ -40,12 +40,6 @@ else
 
 fi
 
-
-# 共通DBのパス
-
-DB="${BASE_DIR}/db/study.db"
-
-
 # 対象のファイルパス
 # BASE_DIRを使用して作成しているので対象のファイルの絶対パスになっている
 # そのため存在確認の判定値として利用する
@@ -112,7 +106,7 @@ else
 
         if [ "${exec_check}" = "y" ]; then
 
-            if ! sqlite3 "${DB}" < "${tar_file_ps}"; then
+            if ! bash "${BASE_DIR}/sqlfun/log_sql.sh" "${tar_file_ps}"; then
 
                 echo "${tar_file_ps}ファイル実行に失敗しました" >&2
 

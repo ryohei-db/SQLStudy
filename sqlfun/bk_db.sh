@@ -9,13 +9,6 @@ source "${BASE_DIR}/config/settings.conf"
 # 初期実装では else を用いて正常処理をネストしていたが、可読性向上のため Early Exit を採用し、異常系のみを if で処理する構成へリファクタリングした。
 
 
-# データベースとバックアップ先のパス
-
-DB="${BASE_DIR}/db/study.db"
-
-BACKUP_DIR="${BASE_DIR}/db_backup"
-
-
 # データベースの存在確認
 
 if [ ! -f "${DB}" ]; then
