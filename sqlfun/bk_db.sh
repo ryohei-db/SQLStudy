@@ -33,7 +33,7 @@ fi
 
 # バックアップファイル名を作成
 
-BACKUP_NAME="study_$(date '+%Y%m%d%H%M%S').db"
+BACKUP_NAME="study_$(date '+%Y-%m-%d %H:%M:%S').db"
 
 # データベースをバックアップ
 

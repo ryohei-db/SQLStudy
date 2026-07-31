@@ -28,11 +28,11 @@ fi
 
 #変更日を取得
 
-today="$(date '+%F')"
+today="$(date '+%Y-%m-%d')"
 
 #変更時間を取得
 
-now_time="$(date '+%H%M')"
+now_time="$(date '+%H:%M')"
 
 
 #変更・新規作成されたファイルのディレクトリ
