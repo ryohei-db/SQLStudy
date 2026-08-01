@@ -10,10 +10,26 @@ start_datetime="$(date '+%Y-%m-%d %H:%M:%S')"
 
 
 if [ -t 0 ]; then
-    # 標準入力なし → SQLファイルを使う
-    sql_file="$1"
-    sqlite3 "${DB}" < "${sql_file}"
+
+    sqlite_file="$1"
+
+    if ! sqlite3 "${DB}" < "${sqlite_file}"; then
+
+        echo "SQLの実行に失敗しました"
+        exit 1
+    fi
+
 else
-    # 標準入力あり → パイプから受け取る
-    sqlite3 "${DB}"
+
+    if ! sqlite3 "${DB}"; then
+
+        echo "SQLの実行に失敗しました"
+        exit 1
+    fi
+
 fi
+
+# shellcheck disable=SC2034
+end_datetime="$(date '+%Y-%m-%d %H:%M:%S')"
+
+
