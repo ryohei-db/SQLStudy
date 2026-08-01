@@ -5,6 +5,10 @@ BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 # shellcheck source=/dev/null
 source "${BASE_DIR}/config/settings.conf"
 
+
+# shellcheck disable=SC2034
+start_time="$(date '+%s')"
+
 # shellcheck disable=SC2034
 start_datetime="$(date '+%Y-%m-%d %H:%M:%S')"
 
@@ -32,4 +36,9 @@ fi
 # shellcheck disable=SC2034
 end_datetime="$(date '+%Y-%m-%d %H:%M:%S')"
 
+# shellcheck disable=SC2034
+end_time="$(date '+%s')"
+
+# shellcheck disable=SC2034
+elapsed_time="$(( end_time - start_time ))"
 
