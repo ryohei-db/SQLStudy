@@ -99,7 +99,7 @@ SQL / Linux / SQLite 学習環境
 │   │   ├── bk_db_log.md
 │   │   ├── bk_dk_cron_log.md
 │   │   ├── gsave_ver1.01_log.md
-│   │   ├── log_sql.sh_logs.md
+│   │   ├── log_sql.sh_log.md
 │   │   ├── reset_table_log.md
 │   │   ├── select_file_log.md
 │   │   └── update_readme_log.md
@@ -172,6 +172,7 @@ SQL / Linux / SQLite 学習環境
 - `reset_table()` : テーブルの存在確認・実行確認を行い、安全に `DROP TABLE` を実行
 - `select_file()` : 対象ファイルの選択・存在確認・実行を行う共通実行基盤
 - `bk_db()` : SQLite データベースを日時付きでバックアップし、古いバックアップを自動削除
+- `log_sql()` : log_sql() : sqlite3の実行とSQL実行ログの記録を行う
 
 ## Automation ： 自動化
 
