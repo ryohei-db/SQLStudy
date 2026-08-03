@@ -120,13 +120,15 @@ SQL / Linux / SQLite 学習環境
 │       ├── gsave_ver1.01_test1_2026_07_24.md
 │       ├── init_sql_test_1_2026_07_12-14.md
 │       ├── init_sql_test_2_2026_07_16.md
+│       ├── log_sql_test1_2026_08_04.md
 │       ├── reset_table_test_1_2026_07_12-14.md
 │       ├── reset_table_test_2_2026_07_16.md
 │       ├── select_file_test_1_2026_07_16.md
 │       ├── update_readme_test1_2026_07_24.md
 │       └── write_shell_log_test1_2026_08_04.md
 ├── logs
-│   └── shell_exec_2026_08_04.log
+│   ├── shell_exec_2026_08_04.log
+│   └── sql_exec_2026_08_04.log
 ├── pubfun
 │   ├── gsave.sh
 │   ├── select_file.sh
@@ -158,7 +160,7 @@ SQL / Linux / SQLite 学習環境
     ├── log_sql.sh
     └── reset_table.sh
 
-22 directories, 73 files
+22 directories, 75 files
 ```
 <!-- TREE_END -->
 
