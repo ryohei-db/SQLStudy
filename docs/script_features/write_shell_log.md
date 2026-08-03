@@ -68,7 +68,6 @@ SQLStudyプロジェクト内で実行するシェルスクリプト
 - reset_table.sh
 - select_file.sh
 - bk_db.sh
-- gsave.sh
 - update_readme.sh
 
 ---
@@ -84,7 +83,7 @@ grep
 find
 cat
 ```
-
+- `gsave.sh` は、実行後のログ追記によって新たなGit差分が発生するため、シェルログの対象外とする。
 ---
 
 ## 主な役割

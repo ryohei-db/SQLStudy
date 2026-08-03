@@ -103,7 +103,8 @@ SQL / Linux / SQLite 学習環境
 │   │   ├── log_sql.sh_log.md
 │   │   ├── reset_table_log.md
 │   │   ├── select_file_log.md
-│   │   └── update_readme_log.md
+│   │   ├── update_readme_log.md
+│   │   └── write_shell_log_log.md
 │   ├── script_features
 │   │   ├── bk_db.md
 │   │   ├── gsave.md
@@ -160,7 +161,7 @@ SQL / Linux / SQLite 学習環境
     ├── log_sql.sh
     └── reset_table.sh
 
-22 directories, 75 files
+22 directories, 76 files
 ```
 <!-- TREE_END -->
 
