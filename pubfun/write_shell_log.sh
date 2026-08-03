@@ -6,7 +6,7 @@ BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 source "${BASE_DIR}/config/settings.conf"
 
 # ログファイルの作成日
-log_date="$(date '+&Y_%m_%d')"
+log_date="$(date '+%Y_%m_%d')"
 
 # ログファイルのパス
 log_file="${LOG_DIR}/${SQL_LOG_PREFIX}_${log_date}.log"
