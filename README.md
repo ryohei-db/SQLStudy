@@ -70,7 +70,7 @@ SQL / Linux / SQLite 学習環境
 │   └── settings.json
 ├── README.md
 ├── config
-│   └── setteing.conf
+│   └── setting.conf
 ├── cron
 │   └── db_bk.cron
 ├── db
