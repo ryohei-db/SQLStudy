@@ -3,16 +3,16 @@
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 # shellcheck source=/dev/null
-source "${BASE_DIR}/config/settings.conf"
+source "${BASE_DIR}/config/setting.conf"
 
 # ログファイルの作成日
 log_date="$(date '+%Y_%m_%d')"
 
 # ログファイルのパス
-log_file="${LOG_DIR}/${SQL_LOG_PREFIX}_${log_date}.log"
+log_file="${LOG_DIR}/${SHELL_LOG_PREFIX}_${log_date}.log"
 
 # ログ開始時刻
-start_date="$(date '%Y_%m_%d %H:%M:%S' )"
+start_date="$(date '+%Y_%m_%d %H:%M:%S' )"
 
 # 第1引数から実行対象のシェルスクリプトを取得する
 shell_target="$1"
