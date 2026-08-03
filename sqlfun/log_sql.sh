@@ -55,7 +55,8 @@ fi
 # SQLの実行成功時はSUCCESSログを出力する
 
 printf '%s\n' \
-            "${start_datetime} | ${sql_target} | SUCCESS" \
-            >> "${log_file}"
+"${start_datetime} | ${sql_target} | SUCCESS" \
+>> "${log_file}"
 
+exit 0
 

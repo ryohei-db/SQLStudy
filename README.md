@@ -93,6 +93,7 @@ SQL / Linux / SQLite 学習環境
 │   │   ├── github_purpose.md
 │   │   ├── log_design.md
 │   │   ├── scripts_purpose.md
+│   │   ├── shell_execution_flow.md
 │   │   └── sql_execution_flow.md
 │   ├── development_log
 │   │   ├── GitHub_Actions_CI_shellcheck_log.md
@@ -154,7 +155,7 @@ SQL / Linux / SQLite 学習環境
     ├── log_sql.sh
     └── reset_table.sh
 
-22 directories, 69 files
+22 directories, 70 files
 ```
 <!-- TREE_END -->
 
@@ -164,6 +165,11 @@ SQL / Linux / SQLite 学習環境
 - VSCode
 - DBeaver
 
+## Common Utilities : 共通実行基盤
+
+- log_sql() : sqlite3 の実行とSQL実行ログを共通化
+- write_shell_log() : シェルスクリプトの実行とシェルログを共通化
+
 ## Features : 主な機能
 
 - `init_sql()` : CREATE・INSERT を自動実行し、初回のテーブル作成とデータ登録を自動化
@@ -172,7 +178,6 @@ SQL / Linux / SQLite 学習環境
 - `reset_table()` : テーブルの存在確認・実行確認を行い、安全に `DROP TABLE` を実行
 - `select_file()` : 対象ファイルの選択・存在確認・実行を行う共通実行基盤
 - `bk_db()` : SQLite データベースを日時付きでバックアップし、古いバックアップを自動削除
-- `log_sql()` : log_sql() : sqlite3の実行とSQL実行ログの記録を行う
 
 ## Automation ： 自動化
 
