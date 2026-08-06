@@ -23,9 +23,9 @@ echo "${DB}が存在します"
 
 # バックアップディレクトリがなければ作成
 
-if [ ! -d "${BACKUP_DIR}"  ]; then
+if [ ! -d "${BACKUP_DIR}" ]; then
 
-    echo "${BACKUP_DIR}が存在しません!! ディレクトリを作成します"
+    echo "${BACKUP_DIR}が存在しません!! ディレクトリを作成します" >&2
 
     mkdir -p "${BACKUP_DIR}"
 
