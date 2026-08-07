@@ -1,7 +1,7 @@
 
-45 23 * * * bash "/mnt/c/DEV/SQLStudy/pubfun/write_shell_log.sh"  \
-"/mnt/c/DEV/SQLStudy/sqlfun/bk_db.sh" \
- >> /tmp/script.log 2>&1
+45 23 * * * bash "/mnt/c/DEV/SQLStudy/pubfun/write_shell_log.sh" "/mnt/c/DEV/SQLStudy/sqlfun/bk_db.sh" >> /tmp/script.log 2>&1
+
+
 
 
 
