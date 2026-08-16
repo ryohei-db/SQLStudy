@@ -90,6 +90,7 @@ SQL / Linux / SQLite 学習環境
 │   │   ├── DB_what.md
 │   │   ├── GitHub_Actions_CI_shellcheck.md
 │   │   ├── coding_style_2026_07_27.md
+│   │   ├── environment_independence.md
 │   │   ├── github_purpose.md
 │   │   ├── log_design.md
 │   │   ├── scripts_purpose.md
@@ -162,7 +163,7 @@ SQL / Linux / SQLite 学習環境
     ├── log_sql.sh
     └── reset_table.sh
 
-22 directories, 77 files
+22 directories, 78 files
 ```
 <!-- TREE_END -->
 
