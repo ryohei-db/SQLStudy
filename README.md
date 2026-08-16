@@ -69,6 +69,7 @@ SQL / Linux / SQLite 学習環境
 ├── .vscode
 │   └── settings.json
 ├── README.md
+├── ROADMAP.md
 ├── config
 │   └── setting.conf
 ├── cron
@@ -163,7 +164,7 @@ SQL / Linux / SQLite 学習環境
     ├── log_sql.sh
     └── reset_table.sh
 
-22 directories, 78 files
+22 directories, 79 files
 ```
 <!-- TREE_END -->
 
