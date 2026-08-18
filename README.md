@@ -97,7 +97,8 @@ SQL / Linux / SQLite 学習環境
 │   │   ├── log_design.md
 │   │   ├── scripts_purpose.md
 │   │   ├── shell_execution_flow.md
-│   │   └── sql_execution_flow.md
+│   │   ├── sql_execution_flow.md
+│   │   └── 環境依存解消_BASE_DIR・設定ファイル改善.md
 │   ├── development_log
 │   │   ├── GitHub_Actions_CI_shellcheck_log.md
 │   │   ├── bk_db_log.md
@@ -137,6 +138,7 @@ SQL / Linux / SQLite 学習環境
 │   └── sql_exec_2026_08_04.log
 ├── pubfun
 │   ├── gsave.sh
+│   ├── register_cron.sh
 │   ├── select_file.sh
 │   ├── update_readme.sh
 │   └── write_shell_log.sh
@@ -166,7 +168,7 @@ SQL / Linux / SQLite 学習環境
     ├── log_sql.sh
     └── reset_table.sh
 
-22 directories, 81 files
+22 directories, 83 files
 ```
 <!-- TREE_END -->
 
