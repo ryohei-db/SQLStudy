@@ -132,6 +132,7 @@ SQL / Linux / SQLite 学習環境
 ├── logs
 │   ├── shell_exec_2026_08_04.log
 │   ├── shell_exec_2026_08_07.log
+│   ├── shell_exec_2026_08_18.log
 │   └── sql_exec_2026_08_04.log
 ├── pubfun
 │   ├── gsave.sh
@@ -164,7 +165,7 @@ SQL / Linux / SQLite 学習環境
     ├── log_sql.sh
     └── reset_table.sh
 
-22 directories, 79 files
+22 directories, 80 files
 ```
 <!-- TREE_END -->
 
