@@ -95,10 +95,10 @@ SQL / Linux / SQLite 学習環境
 │   │   ├── environment_independence.md
 │   │   ├── github_purpose.md
 │   │   ├── log_design.md
+│   │   ├── path_config_refactoring.md.md
 │   │   ├── scripts_purpose.md
 │   │   ├── shell_execution_flow.md
-│   │   ├── sql_execution_flow.md
-│   │   └── 環境依存解消_BASE_DIR・設定ファイル改善.md
+│   │   └── sql_execution_flow.md
 │   ├── development_log
 │   │   ├── GitHub_Actions_CI_shellcheck_log.md
 │   │   ├── bk_db_log.md
