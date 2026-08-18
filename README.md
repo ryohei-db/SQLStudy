@@ -95,7 +95,7 @@ SQL / Linux / SQLite 学習環境
 │   │   ├── environment_independence.md
 │   │   ├── github_purpose.md
 │   │   ├── log_design.md
-│   │   ├── path_config_refactoring.md.md
+│   │   ├── path_config_refactoring_2026_08_18.md
 │   │   ├── scripts_purpose.md
 │   │   ├── shell_execution_flow.md
 │   │   └── sql_execution_flow.md
