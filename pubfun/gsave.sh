@@ -18,7 +18,7 @@ fi
 
 # README を更新する　update_readme.sh を実行する
 
-if ! bash "/mnt/c/DEV/SQLStudy/pubfun/update_readme.sh"; then
+if ! bash "${BASE_DIR}/pubfun/update_readme.sh"; then
 
     echo "update_readmeの実行(READMEの更新)に失敗しました" >&2
 
