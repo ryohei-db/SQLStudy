@@ -46,5 +46,13 @@ done < "${cron_targets}")"; then
 fi
 
 
+cron_targets_BASE_DIR_ps="$(
+
+    printf '%s\n' "${cron_targets}" |
+
+    awk -F '/' '処理を書く'
+
+
+)"
 
 
