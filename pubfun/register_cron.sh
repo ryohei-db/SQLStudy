@@ -46,13 +46,58 @@ done < "${cron_targets}")"; then
 fi
 
 
-cron_targets_BASE_DIR_ps="$(
+if ! cron_targets_BASE_DIR_ps="$(
 
     printf '%s\n' "${cron_targets}" |
 
-    awk -F '/' '処理を書く'
+     awk -F'/' '{
+        path = ""
+        for (i = 2; i <= NF; i++) {
+            path = path "/" $i
+            if ($i == "SQLStudy") {
+                print path
+                exit
+            }
+        }
+    }'
+)"; then
+
+    exit 1
+
+fi
+
+if ! cron_record="$(
+    sed "s|\${BASE_DIR}|${cron_targets_BASE_DIR_ps}|g" \
+        "${BASE_DIR}/cron/db_bk.cron"
+)"; then
+
+    exit 1
+
+fi
+
+printf '%s\n' "${cron_record}"
+
+read -r -p "この内容でcronを登録しますか？ y/n : " answer
+
+if [ "${answer}" = "y" ]; then
+    printf '%s\n' "${cron_record}" | crontab -
+else
+    echo "cron登録を中止しました"
+fi
+
+crontab -l
 
 
-)"
+
+
+
+
+
+
+
+
+
+
+
 
 
