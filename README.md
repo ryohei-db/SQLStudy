@@ -116,6 +116,7 @@ SQL / Linux / SQLite 学習環境
 │   │   ├── gsave_ver1.01.md
 │   │   ├── init_sql.md
 │   │   ├── log_sql.md
+│   │   ├── register_cron.md
 │   │   ├── reset_table.md
 │   │   ├── select_file.md
 │   │   ├── update_readme.md
@@ -173,7 +174,7 @@ SQL / Linux / SQLite 学習環境
     ├── log_sql.sh
     └── reset_table.sh
 
-22 directories, 88 files
+22 directories, 89 files
 ```
 <!-- TREE_END -->
 
@@ -200,6 +201,7 @@ SQL / Linux / SQLite 学習環境
 ## Automation ： 自動化
 
 - `cron` ： `bk_db.sh` を定期実行し、SQLite データベースのバックアップを自動作成
+- `register_cron.sh` ： 実行環境のパスを自動取得し、cron設定を生成・登録
 
 ## Quality Control ： 品質管理
 
