@@ -81,6 +81,7 @@ SQL / Linux / SQLite 学習環境
 │   ├── study_2026-08-27 19:21:50.db
 │   ├── study_2026-08-27 19:23:22.db
 │   ├── study_2026-08-27 19:32:06.db
+│   ├── study_2026-08-27 19:51:04.db
 │   └── study_20260728234500.db
 ├── docs
 │   ├── design
@@ -172,7 +173,7 @@ SQL / Linux / SQLite 学習環境
     ├── log_sql.sh
     └── reset_table.sh
 
-22 directories, 87 files
+22 directories, 88 files
 ```
 <!-- TREE_END -->
 
