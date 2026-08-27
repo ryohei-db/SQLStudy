@@ -71,9 +71,9 @@ SQL / Linux / SQLite 学習環境
 ├── README.md
 ├── ROADMAP.md
 ├── config
-│   ├── cron_targets.conf
 │   └── setting.conf
 ├── cron
+│   ├── cron_targets.conf
 │   └── db_bk.cron
 ├── db
 │   └── study.db
@@ -105,6 +105,7 @@ SQL / Linux / SQLite 学習環境
 │   │   ├── bk_dk_cron_log.md
 │   │   ├── gsave_ver1.01_log.md
 │   │   ├── log_sql.sh_log.md
+│   │   ├── register_cron_log.md
 │   │   ├── reset_table_log.md
 │   │   ├── select_file_log.md
 │   │   ├── update_readme_log.md
@@ -126,6 +127,7 @@ SQL / Linux / SQLite 学習環境
 │       ├── init_sql_test_1_2026_07_12-14.md
 │       ├── init_sql_test_2_2026_07_16.md
 │       ├── log_sql_test1_2026_08_04.md
+│       ├── register_cron_test1_2026_08_27.md
 │       ├── reset_table_test_1_2026_07_12-14.md
 │       ├── reset_table_test_2_2026_07_16.md
 │       ├── select_file_test_1_2026_07_16.md
@@ -137,6 +139,7 @@ SQL / Linux / SQLite 学習環境
 │   ├── shell_exec_2026_08_18.log
 │   ├── shell_exec_2026_08_19.log
 │   ├── shell_exec_2026_08_21.log
+│   ├── shell_exec_2026_08_27.log
 │   └── sql_exec_2026_08_04.log
 ├── pubfun
 │   ├── gsave.sh
@@ -170,7 +173,7 @@ SQL / Linux / SQLite 学習環境
     ├── log_sql.sh
     └── reset_table.sh
 
-22 directories, 85 files
+22 directories, 88 files
 ```
 <!-- TREE_END -->
 

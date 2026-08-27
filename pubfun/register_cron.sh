@@ -35,12 +35,12 @@ if ! cron_targets="$(while read -r target_file; do
     
     else
 
-        echo "対象ファイルが正常にヒットしました"
+        printf '%s\n' "${targets_path}"
 
     fi
 
 
-done < "${cron_targets}")"; then
+done < "${cron_targets_lists}")"; then
 
     exit 1
 fi
