@@ -78,12 +78,9 @@ SQL / Linux / SQLite 学習環境
 ├── db
 │   └── study.db
 ├── db_backup
-│   ├── study_20260721171001.db
-│   ├── study_20260721171201.db
-│   ├── study_20260721234500.db
-│   ├── study_20260723234500.db
-│   ├── study_20260724234502.db
-│   ├── study_20260726234500.db
+│   ├── study_2026-08-27 19:21:50.db
+│   ├── study_2026-08-27 19:23:22.db
+│   ├── study_2026-08-27 19:32:06.db
 │   └── study_20260728234500.db
 ├── docs
 │   ├── design
@@ -141,7 +138,8 @@ SQL / Linux / SQLite 学習環境
 │   ├── shell_exec_2026_08_19.log
 │   ├── shell_exec_2026_08_21.log
 │   ├── shell_exec_2026_08_27.log
-│   └── sql_exec_2026_08_04.log
+│   ├── sql_exec_2026_08_04.log
+│   └── sql_exec_2026_08_27.log
 ├── pubfun
 │   ├── gsave.sh
 │   ├── register_cron.sh
@@ -174,7 +172,7 @@ SQL / Linux / SQLite 学習環境
     ├── log_sql.sh
     └── reset_table.sh
 
-22 directories, 89 files
+22 directories, 87 files
 ```
 <!-- TREE_END -->
 

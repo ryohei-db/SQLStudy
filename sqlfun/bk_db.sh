@@ -19,7 +19,10 @@ if [ ! -f "${DB}" ]; then
 
 fi
 
-echo "${DB}が存在します"
+
+# バックアップディレクトリ
+
+BACKUP_DIR="${BASE_DIR}/db_backup"
 
 # バックアップディレクトリがなければ作成
 
@@ -45,6 +48,8 @@ if ! cp "${DB}" "${BACKUP_DIR}"/"${BACKUP_NAME}"; then
 
 fi
 
+echo "バックアップファイルの作成に成功しました"
+
 # db_backup にある　ファイルで　30よりも前に作成されたファイルを見つけたら削除
 
 find "${BACKUP_DIR}" -type f -name 'study_*.db' -mtime +30 -delete
@@ -53,7 +58,7 @@ find "${BACKUP_DIR}" -type f -name 'study_*.db' -mtime +30 -delete
 # shellcheck disable=SC2012
 # バックアップファイル名はスクリプトで生成しており、空白・特殊文字を含まないため ls を使用する。
 
-ls -t "${BACKUP_DIR}" | tail -n +31 | xargs rm
+ls -t "${BACKUP_DIR}" | tail -n +31 | xargs -r rm
 
 
 
